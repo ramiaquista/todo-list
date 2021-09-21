@@ -22,6 +22,27 @@ const task3 = {
 const toDoTasks = [task1, task2, task3];
 const taskList = document.querySelector('#todo-list');
 
+function taskListDisplayed() {
+  toDoTasks.forEach((task) => {
+    const li = document.createElement('li');
+    const labelDes = document.createElement('label');
+    const checkBox = document.createElement('input');
+    const icon = document.createElement('i');
+
+    checkBox.type = 'checkbox';
+    li.classList.add('task');
+    icon.classList.add('fas');
+    icon.classList.add('fa-ellipsis-v');
+
+    labelDes.innerHTML = task.description;
+
+    li.appendChild(checkBox);
+    li.appendChild(labelDes);
+    li.appendChild(icon);
+    taskList.appendChild(li);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const divUl = document.createElement('div');
   const h2 = document.createElement('h2');
@@ -49,24 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   form.appendChild(addIcon);
   taskList.appendChild(form);
 
-  toDoTasks.forEach((task) => {
-    const li = document.createElement('li');
-    const labelDes = document.createElement('label');
-    const checkBox = document.createElement('input');
-    const icon = document.createElement('i');
-
-    checkBox.type = 'checkbox';
-    li.classList.add('task');
-    icon.classList.add('fas');
-    icon.classList.add('fa-ellipsis-v');
-
-    labelDes.innerHTML = task.description;
-
-    li.appendChild(checkBox);
-    li.appendChild(labelDes);
-    li.appendChild(icon);
-    taskList.appendChild(li);
-  });
+  taskListDisplayed();
 
   const clearButton = document.createElement('button');
 
