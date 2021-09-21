@@ -39,9 +39,9 @@ No extra dependencies needed to use the code!
 
 Add Live Server VSCode extension to deploy a local host server in order to start using it!
 
-### Live Demo Server
+<!-- ### Live Demo Server -->
 
-- [To Do Tasks List](https://ramiaquista.github.io/todo-list/)
+<!-- - [To Do Tasks List](https://ramiaquista.github.io/todo-list/) -->
 
 
 
