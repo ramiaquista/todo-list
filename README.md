@@ -5,7 +5,7 @@
 > In this project, I have set up a To Do Tasks list using webpack.
 
 
-<!-- ![screenshot](./project-img.png) -->
+![screenshot](./bg-img-todoList.png)
 
 
 ## Built With
