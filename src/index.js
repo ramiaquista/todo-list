@@ -11,15 +11,11 @@ let task1 = {
   index: 0,
 };
 
-task1 = dataStorage[0];
-
 let task2 = {
   description: 'Dog Walking',
   completed: false,
   index: 1,
 };
-
-task2 = dataStorage[1];
 
 let task3 = {
   description: 'Write some js code',
@@ -27,7 +23,11 @@ let task3 = {
   index: 2,
 };
 
-task3 = dataStorage[2];
+if (dataStorage !== null) {
+  task1 = dataStorage[0];
+  task2 = dataStorage[1];
+  task3 = dataStorage[2];
+}
 
 const toDoTasks = [task1, task2, task3];
 const taskList = document.querySelector('#todo-list');
@@ -45,6 +45,7 @@ function taskListDisplayed() {
 
     checkBox.type = 'checkbox';
     checkBox.classList.add('checkBox');
+    checkBox.id = 'unmarked';
     li.classList.add('task');
     icon.classList.add('fas');
     icon.classList.add('fa-ellipsis-v');
@@ -57,15 +58,17 @@ function taskListDisplayed() {
     taskList.appendChild(li);
 
     const data = JSON.parse(localStorage.getItem('todoTasks'));
-
-    if (data[index].completed === true) {
-      checkBox.id = 'marked';
-      checkBox.checked = true;
-      labelDes.classList.add('checked');
-    } else {
-      checkBox.id = 'unmarked';
-      checkBox.checked = false;
+    if (data) {
+      if (data[index].completed === true) {
+        checkBox.id = 'marked';
+        checkBox.checked = true;
+        labelDes.classList.add('checked');
+      } else {
+        checkBox.id = 'unmarked';
+        checkBox.checked = false;
+      }
     }
+
     checkBox.addEventListener('change', () => {
       if (Status.boxNotMarked(checkBox)) {
         labelDes.classList.add('checked');
