@@ -114,3 +114,8 @@ form {
   display: block;
   opacity: 0.5;
 }
+
+.checked {
+  color: grey;
+  text-decoration-line: line-through;
+}

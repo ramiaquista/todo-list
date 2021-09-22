@@ -1,35 +1,50 @@
 // import _ from 'lodash';
+/* eslint-disable prefer-destructuring */
 import './style.css';
+import Status from './task-status';
 
-const task1 = {
+const dataStorage = JSON.parse(localStorage.getItem('todoTasks'));
+
+let task1 = {
   description: 'Go to the supermarket',
   completed: false,
   index: 0,
 };
 
-const task2 = {
+task1 = dataStorage[0];
+
+let task2 = {
   description: 'Dog Walking',
   completed: false,
   index: 1,
 };
 
-const task3 = {
+task2 = dataStorage[1];
+
+let task3 = {
   description: 'Write some js code',
   completed: false,
   index: 2,
 };
 
+task3 = dataStorage[2];
+
 const toDoTasks = [task1, task2, task3];
 const taskList = document.querySelector('#todo-list');
 
+function setLocalStorage() {
+  localStorage.setItem('todoTasks', JSON.stringify(toDoTasks));
+}
+
 function taskListDisplayed() {
-  toDoTasks.forEach((task) => {
+  toDoTasks.forEach((task, index) => {
     const li = document.createElement('li');
     const labelDes = document.createElement('label');
     const checkBox = document.createElement('input');
     const icon = document.createElement('i');
 
     checkBox.type = 'checkbox';
+    checkBox.classList.add('checkBox');
     li.classList.add('task');
     icon.classList.add('fas');
     icon.classList.add('fa-ellipsis-v');
@@ -40,6 +55,30 @@ function taskListDisplayed() {
     li.appendChild(labelDes);
     li.appendChild(icon);
     taskList.appendChild(li);
+
+    const data = JSON.parse(localStorage.getItem('todoTasks'));
+
+    if (data[index].completed === true) {
+      checkBox.id = 'marked';
+      checkBox.checked = true;
+      labelDes.classList.add('checked');
+    } else {
+      checkBox.id = 'unmarked';
+      checkBox.checked = false;
+    }
+    checkBox.addEventListener('change', () => {
+      if (Status.boxNotMarked(checkBox)) {
+        labelDes.classList.add('checked');
+        checkBox.id = 'marked';
+        toDoTasks[index].completed = true;
+        setLocalStorage();
+      } else {
+        labelDes.classList.remove('checked');
+        checkBox.id = 'unmarked';
+        toDoTasks[index].completed = false;
+        setLocalStorage();
+      }
+    });
   });
 }
 
