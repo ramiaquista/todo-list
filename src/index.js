@@ -10,12 +10,13 @@ function setLocalStorage() {
   localStorage.setItem('todoTasks', JSON.stringify(toDoTasks));
 }
 
-const dataStorage = JSON.parse(localStorage.getItem('todoTasks'));
+let dataStorage = JSON.parse(localStorage.getItem('todoTasks'));
 
 const taskList = document.querySelector('#todo-list');
 const clearButton = document.querySelector('.link-button');
 
 function taskListDisplayed() {
+  dataStorage = JSON.parse(localStorage.getItem('todoTasks'));
   if (dataStorage !== null) {
     toDoTasks = dataStorage;
   }
@@ -67,7 +68,7 @@ function taskListDisplayed() {
     });
 
     labelDes.addEventListener('input', () => {
-      Crud.updateDescription(toDoTasks, li.id, labelDes.innerHTML);
+      Crud.updateDescription(toDoTasks, li.id, labelDes.innerText);
       setLocalStorage();
     });
 
@@ -109,14 +110,9 @@ function clearAllCompletedTasks() {
   if (dataStorage !== null) {
     toDoTasks = dataStorage;
   }
-  const completedTasks = [];
-  toDoTasks.forEach((task) => {
-    if (task.completed) {
-      completedTasks.push(task);
-    }
-  });
-  completedTasks.forEach((task) => {
-    Crud.removeTask(toDoTasks, task.index);
+  toDoTasks = toDoTasks.filter((task) => task.completed === false);
+  toDoTasks.forEach((task, i) => {
+    task.index = i;
   });
   setLocalStorage();
   taskListDisplayed();
