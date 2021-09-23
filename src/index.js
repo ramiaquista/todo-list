@@ -2,60 +2,80 @@
 /* eslint-disable prefer-destructuring */
 import './style.css';
 import Status from './task-status';
+import Crud from './tasks-handler';
 
-const dataStorage = JSON.parse(localStorage.getItem('todoTasks'));
-
-let task1 = {
-  description: 'Go to the supermarket',
-  completed: false,
-  index: 0,
-};
-
-let task2 = {
-  description: 'Dog Walking',
-  completed: false,
-  index: 1,
-};
-
-let task3 = {
-  description: 'Write some js code',
-  completed: false,
-  index: 2,
-};
-
-if (dataStorage !== null) {
-  task1 = dataStorage[0];
-  task2 = dataStorage[1];
-  task3 = dataStorage[2];
-}
-
-const toDoTasks = [task1, task2, task3];
-const taskList = document.querySelector('#todo-list');
+let toDoTasks = [];
 
 function setLocalStorage() {
   localStorage.setItem('todoTasks', JSON.stringify(toDoTasks));
 }
 
+const dataStorage = JSON.parse(localStorage.getItem('todoTasks'));
+
+const taskList = document.querySelector('#todo-list');
+const clearButton = document.querySelector('.link-button');
+
 function taskListDisplayed() {
+  if (dataStorage !== null) {
+    toDoTasks = dataStorage;
+  }
+  if (taskList.hasChildNodes()) {
+    const nodesArray = document.querySelectorAll('.task');
+    nodesArray.forEach((node) => {
+      taskList.removeChild(node);
+    });
+  }
   toDoTasks.forEach((task, index) => {
     const li = document.createElement('li');
     const labelDes = document.createElement('label');
     const checkBox = document.createElement('input');
     const icon = document.createElement('i');
+    const trashIcon = document.createElement('i');
 
     checkBox.type = 'checkbox';
     checkBox.classList.add('checkBox');
     checkBox.id = 'unmarked';
     li.classList.add('task');
+    li.id = index;
     icon.classList.add('fas');
     icon.classList.add('fa-ellipsis-v');
+    icon.id = 'move';
+    labelDes.contentEditable = false;
+    trashIcon.classList.add('fas');
+    trashIcon.classList.add('fa-trash-alt');
+    trashIcon.classList.add('hidden');
 
     labelDes.innerHTML = task.description;
 
     li.appendChild(checkBox);
     li.appendChild(labelDes);
     li.appendChild(icon);
-    taskList.appendChild(li);
+    li.appendChild(trashIcon);
+    taskList.insertBefore(li, clearButton);
+
+    li.addEventListener('click', () => {
+      labelDes.contentEditable = true;
+      if (trashIcon.classList.contains('hidden')) {
+        li.classList.add('task-pressed');
+        trashIcon.classList.remove('hidden');
+        icon.classList.add('hidden');
+      } else {
+        li.classList.remove('task-pressed');
+        icon.classList.remove('hidden');
+        trashIcon.classList.add('hidden');
+      }
+    });
+
+    labelDes.addEventListener('input', () => {
+      Crud.updateDescription(toDoTasks, li.id, labelDes.innerHTML);
+      setLocalStorage();
+    });
+
+    trashIcon.addEventListener('click', () => {
+      Crud.removeTask(toDoTasks, li.id);
+      setLocalStorage();
+      taskListDisplayed();
+    });
 
     const data = JSON.parse(localStorage.getItem('todoTasks'));
     if (data) {
@@ -85,6 +105,23 @@ function taskListDisplayed() {
   });
 }
 
+function clearAllCompletedTasks() {
+  if (dataStorage !== null) {
+    toDoTasks = dataStorage;
+  }
+  const completedTasks = [];
+  toDoTasks.forEach((task) => {
+    if (task.completed) {
+      completedTasks.push(task);
+    }
+  });
+  completedTasks.forEach((task) => {
+    Crud.removeTask(toDoTasks, task.index);
+  });
+  setLocalStorage();
+  taskListDisplayed();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const divUl = document.createElement('div');
   const h2 = document.createElement('h2');
@@ -97,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   divUl.appendChild(h2);
   divUl.appendChild(reloadButton);
-  taskList.appendChild(divUl);
+  taskList.insertBefore(divUl, clearButton);
 
   const form = document.createElement('form');
   const input = document.createElement('input');
@@ -110,14 +147,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.appendChild(input);
   form.appendChild(addIcon);
-  taskList.appendChild(form);
+  taskList.insertBefore(form, clearButton);
+
+  if (addIcon) {
+    addIcon.addEventListener('click', () => {
+      Crud.addTask(toDoTasks, input.value);
+      setLocalStorage();
+      taskListDisplayed();
+      input.value = '';
+    });
+  }
+
+  if (clearButton) {
+    clearButton.addEventListener('click', () => {
+      clearAllCompletedTasks();
+    });
+  }
 
   taskListDisplayed();
-
-  const clearButton = document.createElement('button');
-
-  clearButton.classList.add('link-button');
-  clearButton.innerHTML = 'Clear all completed';
-
-  taskList.appendChild(clearButton);
 });

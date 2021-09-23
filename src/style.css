@@ -62,6 +62,7 @@ form {
   border: none;
   font-style: italic;
   padding: 0;
+  margin-left: 10px;
 }
 
 #add-item::placeholder {
@@ -88,6 +89,10 @@ form {
   padding: 12px;
 }
 
+.task-pressed {
+  background-color: #fffeca;
+}
+
 .task label {
   width: 100%;
   padding: 0;
@@ -99,7 +104,7 @@ form {
   margin-right: 15px;
 }
 
-.task i {
+.task #move {
   text-align: end;
   cursor: move;
   padding-right: 7px;
@@ -118,4 +123,8 @@ form {
 .checked {
   color: grey;
   text-decoration-line: line-through;
+}
+
+.hidden {
+  display: none;
 }
