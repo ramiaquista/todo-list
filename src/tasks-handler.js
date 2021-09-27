@@ -2,7 +2,6 @@
 /* eslint-disable radix */
 
 class Crud {
-  // Method to add a new task to tasklist.
   static addTask(list, input) {
     if (input !== '') {
       const task = {
@@ -14,7 +13,6 @@ class Crud {
     }
   }
 
-  // Method to remove a task from tasklist.
   static removeTask(list, i) {
     if (i >= 0) {
       const lastitem = list.length - 1;
@@ -30,7 +28,6 @@ class Crud {
     }
   }
 
-  // Method to update task description.
   static updateDescription(list, index, input) {
     list[index].description = input;
   }
