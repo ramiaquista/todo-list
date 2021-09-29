@@ -3,7 +3,6 @@
 class Crud {
   // Method to add a new task to tasklist.
   static addTask(list, input) {
-    const initial = list.length;
     if (input !== '') {
       const task = {
         description: input,
@@ -11,23 +10,28 @@ class Crud {
         index: list.length,
       };
       list.push(task);
+      return 1;
+    } else {
+      return 0;
     }
-    return list.length - initial;
   }
 
   // Method to remove a task from tasklist.
-  static removeTask(list, i) {
-    if (i >= 0) {
+  static removeTask(list, id) {
+    if (id >= 0) {
       const lastitem = list.length - 1;
-      if (i === lastitem) {
-        list.splice(i, 1);
+      if (id === lastitem) {
+        list.splice(id, 1);
       } else {
-        list.splice(i, 1);
-        let j = parseInt(i);
+        list.splice(id, 1);
+        let j = parseInt(id);
         for (j; j < list.length; j++) {
           list[j].index -= 1;
         }
       }
+      return 1;
+    } else {
+      return 0;
     }
   }
 

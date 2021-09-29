@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1632945068162" clover="3.2.0">
-  <project timestamp="1632945068162" name="All files">
-    <metrics statements="15" coveredstatements="6" conditionals="6" coveredconditionals="2" methods="3" coveredmethods="1" elements="24" coveredelements="9" complexity="0" loc="15" ncloc="15" packages="1" files="1" classes="1"/>
-    <file name="tasks-handler.js" path="/Users/ramiaq/Documents/Microverse/Module2/todo-list/src/tasks-handler.js">
-      <metrics statements="15" coveredstatements="6" conditionals="6" coveredconditionals="2" methods="3" coveredmethods="1"/>
-      <line num="19" count="2" type="stmt"/>
-      <line num="20" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="21" count="1" type="stmt"/>
+<coverage generated="1632947821082" clover="3.2.0">
+  <project timestamp="1632947821082" name="All files">
+    <metrics statements="17" coveredstatements="14" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="2" elements="26" coveredelements="21" complexity="0" loc="17" ncloc="17" packages="1" files="1" classes="1"/>
+    <file name="tasks-handler.js" path="/home/novaes/projects/others/todo-list/src/tasks-handler.js">
+      <metrics statements="17" coveredstatements="14" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="2"/>
+      <line num="6" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="21" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="23" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="24" count="0" type="stmt"/>
       <line num="26" count="1" type="stmt"/>
-      <line num="28" count="2" type="stmt"/>
-      <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="34" count="0" type="stmt"/>
-      <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="36" count="0" type="stmt"/>
-      <line num="38" count="0" type="stmt"/>
-      <line num="39" count="0" type="stmt"/>
+      <line num="27" count="1" type="stmt"/>
+      <line num="28" count="1" type="stmt"/>
+      <line num="29" count="0" type="stmt"/>
+      <line num="32" count="1" type="stmt"/>
+      <line num="34" count="1" type="stmt"/>
       <line num="40" count="0" type="stmt"/>
-      <line num="41" count="0" type="stmt"/>
-      <line num="49" count="0" type="stmt"/>
-      <line num="53" count="1" type="stmt"/>
+      <line num="44" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>
