@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1632947821082" clover="3.2.0">
-  <project timestamp="1632947821082" name="All files">
-    <metrics statements="17" coveredstatements="14" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="2" elements="26" coveredelements="21" complexity="0" loc="17" ncloc="17" packages="1" files="1" classes="1"/>
-    <file name="tasks-handler.js" path="/home/novaes/projects/others/todo-list/src/tasks-handler.js">
-      <metrics statements="17" coveredstatements="14" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="2"/>
+<coverage generated="1632949614794" clover="3.2.0">
+  <project timestamp="1632949614794" name="All files">
+    <metrics statements="18" coveredstatements="16" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="3" elements="27" coveredelements="24" complexity="0" loc="18" ncloc="18" packages="1" files="1" classes="1"/>
+    <file name="tasks-handler.js" path="C:\Users\Alexa\OneDrive\Documentos\GitHub\todo-list\src\tasks-handler.js">
+      <metrics statements="18" coveredstatements="16" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="3"/>
       <line num="6" count="2" type="cond" truecount="2" falsecount="0"/>
       <line num="7" count="1" type="stmt"/>
       <line num="12" count="1" type="stmt"/>
@@ -19,8 +19,9 @@
       <line num="29" count="0" type="stmt"/>
       <line num="32" count="1" type="stmt"/>
       <line num="34" count="1" type="stmt"/>
-      <line num="40" count="0" type="stmt"/>
-      <line num="44" count="1" type="stmt"/>
+      <line num="40" count="1" type="stmt"/>
+      <line num="41" count="1" type="stmt"/>
+      <line num="45" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>

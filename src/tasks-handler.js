@@ -38,6 +38,7 @@ class Crud {
   // Method to update task description.
   static updateDescription(list, index, input) {
     list[index].description = input;
+    return list[index].description;
   }
 }
 

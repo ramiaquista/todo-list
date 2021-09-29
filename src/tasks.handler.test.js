@@ -2,11 +2,20 @@
 const crud = require('./tasks-handler');
 
 const testArray = [];
-const testArray2 = [{
+let testArray2 = [{
   description: 'blabla',
   completed: false,
   index: 0,
 }];
+
+
+
+
+describe('Updating tasks', () => {
+  test('compare the same string is inserted', () => {
+    expect( crud.updateDescription(testArray2, 0, 'Alex')==='Alex' ).toBe(true);
+  });
+}); 
 
 describe('Adding new tasks', () => {
   test('Adding Hi Task', () => {
@@ -24,4 +33,4 @@ describe('Removing tasks', () => {
   test('Remove one task', () => {
     expect(crud.removeTask(testArray2, '0')).toBe(1);
   });
-});
+}); 
