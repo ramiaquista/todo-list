@@ -11,7 +11,7 @@ const clearButton = document.querySelector('.link-button');
 
 function taskListDisplayed(ul, toDoTasks) {
   while (ul.hasChildNodes()) ul.removeChild(ul.firstChild);
-  
+
   toDoTasks.forEach((task, index) => {
     ul.appendChild(addItem(toDoTasks, task, index), clearButton);
   });
@@ -34,8 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   top.appendChild(h2);
   top.appendChild(reloadButton);
-  top.classList.add('d-flex');
-  boxList.classList.add('todo-title');
+  top.classList.add('todo-title');
 
   boxList.appendChild(top);
 
@@ -45,7 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
   addIcon.classList.add('fa-long-arrow-alt-left');
 
   form.append(input, addIcon);
-  boxList.append(form, ul);
+  boxList.appendChild(form);
+  boxList.appendChild(ul);
 
   if (addIcon) {
     addIcon.addEventListener('click', () => {
@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   boxList.appendChild(clearButton);
-  
 
   taskListDisplayed(ul, toDoTasks);
 });

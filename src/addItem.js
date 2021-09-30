@@ -1,6 +1,6 @@
 import Status from './task-status';
 import Crud from './tasks-handler';
-import { getLocalStorage, setLocalStorage } from './loadstorage';
+import { setLocalStorage } from './loadstorage';
 
 export default function addItem(toDoTasks, task, index) {
   const li = document.createElement('li');
@@ -28,7 +28,6 @@ export default function addItem(toDoTasks, task, index) {
   li.appendChild(labelDes);
   li.appendChild(icon);
   li.appendChild(trashIcon);
-  
 
   li.addEventListener('click', () => {
     labelDes.contentEditable = true;
