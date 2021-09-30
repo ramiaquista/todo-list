@@ -7,4 +7,8 @@ const getLocalStorage = () => {
   return data;
 };
 
-module.exports = getLocalStorage;
+const setLocalStorage = (toDoTasks) => {
+  localStorage.setItem('todoTasks', JSON.stringify(toDoTasks));
+};
+
+module.exports = { getLocalStorage, setLocalStorage };

@@ -1,14 +1,14 @@
 import './style.css';
 import Status from './task-status';
 import Crud from './tasks-handler';
-import getLocalStorage from './loadstorage';
+import {getLocalStorage, setLocalStorage} from './loadstorage';
 import clearAllCompletedTasks from './clearAll';
 
 let toDoTasks = getLocalStorage();
 
-function setLocalStorage(toDoTasks) {
+/* function setLocalStorage(toDoTasks) {
   localStorage.setItem('todoTasks', JSON.stringify(toDoTasks));
-}
+} */
 
 const taskList = document.querySelector('#todo-list');
 const clearButton = document.querySelector('.link-button');
