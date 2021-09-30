@@ -8,16 +8,20 @@ body {
   background-color: #f1f2f5;
 }
 
-#todo-list {
+#box {
+  background-color: white;
   box-sizing: border-box;
   border-radius: 3px;
   box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
   margin: 0 auto;
-  top: 0;
   max-width: 500px;
   width: 100%;
   text-align: left;
-  list-style: none;
+  padding: 0;
+}
+
+#box > ul {
+  margin: 0;
   padding: 0;
 }
 
@@ -27,6 +31,7 @@ body {
   height: 50px;
   background: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  flex-direction: column;
 }
 
 .todo-title h2 {
@@ -45,6 +50,10 @@ body {
 .todo-title button {
   border: none;
   padding-right: 15px;
+}
+
+.d-flex {
+  display: flex;
 }
 
 form {
