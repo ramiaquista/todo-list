@@ -591,9 +591,10 @@
     "zwitch": "^1.0.5"
   },
   "scripts": {
+    "test": "jest --coverage",
+    "watch": "webpack --watch",
     "start": "webpack serve --open",
-    "build": "webpack",
-    "test": "jest --coverage"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
