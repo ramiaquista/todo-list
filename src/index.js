@@ -1,15 +1,14 @@
-// import './style.css';
+import './style.css';
 import Status from './task-status';
 import Crud from './tasks-handler';
 import getLocalStorage from './loadstorage';
+import clearAllCompletedTasks from './clearAll';
 
-let toDoTasks = [];
+let toDoTasks = getLocalStorage();
 
-function setLocalStorage() {
+function setLocalStorage(toDoTasks) {
   localStorage.setItem('todoTasks', JSON.stringify(toDoTasks));
 }
-
-let dataStorage = getLocalStorage();
 
 const taskList = document.querySelector('#todo-list');
 const clearButton = document.querySelector('.link-button');
@@ -57,13 +56,14 @@ function addItem(task, index) {
 
   labelDes.addEventListener('input', () => {
     Crud.updateDescription(toDoTasks, li.id, labelDes.innerText);
-    setLocalStorage();
+    setLocalStorage(toDoTasks);
   });
 
   trashIcon.addEventListener('click', () => {
     Crud.removeTask(toDoTasks, li.id);
-    setLocalStorage();
-    taskListDisplayed();
+    setLocalStorage(toDoTasks);
+    // eslint-disable-next-line no-use-before-define
+    taskListDisplayed(toDoTasks);
   });
 
   const data = JSON.parse(localStorage.getItem('todoTasks'));
@@ -83,23 +83,19 @@ function addItem(task, index) {
       labelDes.classList.add('checked');
       checkBox.id = 'marked';
       toDoTasks[index].completed = true;
-      setLocalStorage();
+      setLocalStorage(toDoTasks);
     } else {
       labelDes.classList.remove('checked');
       checkBox.id = 'unmarked';
       toDoTasks[index].completed = false;
-      setLocalStorage();
+      setLocalStorage(toDoTasks);
     }
   });
-  
+
   return li.outerHTML;
 }
 
-function taskListDisplayed() {
-  dataStorage = getLocalStorage();
-  if (dataStorage !== null) {
-    toDoTasks = dataStorage;
-  }
+function taskListDisplayed(toDoTasks) {
   if (taskList.hasChildNodes()) {
     const nodesArray = document.querySelectorAll('.task');
     nodesArray.forEach((node) => {
@@ -109,18 +105,6 @@ function taskListDisplayed() {
   toDoTasks.forEach((task, index) => {
     addItem(task, index);
   });
-}
-
-function clearAllCompletedTasks() {
-  if (dataStorage !== null) {
-    toDoTasks = dataStorage;
-  }
-  toDoTasks = toDoTasks.filter((task) => task.completed === false);
-  toDoTasks.forEach((task, i) => {
-    task.index = i;
-  });
-  setLocalStorage();
-  taskListDisplayed();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -153,17 +137,19 @@ document.addEventListener('DOMContentLoaded', () => {
   if (addIcon) {
     addIcon.addEventListener('click', () => {
       Crud.addTask(toDoTasks, input.value);
-      setLocalStorage();
-      taskListDisplayed();
+      setLocalStorage(toDoTasks);
+      taskListDisplayed(toDoTasks);
       input.value = '';
     });
   }
 
   if (clearButton) {
     clearButton.addEventListener('click', () => {
-      clearAllCompletedTasks();
+      toDoTasks = clearAllCompletedTasks(toDoTasks);
+      setLocalStorage(toDoTasks);
+      taskListDisplayed(toDoTasks);
     });
   }
 
-  taskListDisplayed();
+  taskListDisplayed(toDoTasks);
 });

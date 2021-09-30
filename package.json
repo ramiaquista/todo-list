@@ -591,7 +591,7 @@
     "zwitch": "^1.0.5"
   },
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
     "build": "webpack"

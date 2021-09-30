@@ -33,4 +33,10 @@ describe('Updating tasks', () => {
   test('compare the same string is inserted', () => {
     expect(crud.updateDescription(testArray2(), 0, 'Alex') === 'Alex').toBe(true);
   });
+  test('unupdated description', () => {
+    expect(crud.updateDescription(testArray2(), 0, 'Alex') === 'Hello World').toBe(false);
+  });
+  test('compare the same string is inserted', () => {
+    expect(crud.updateDescription(testArray2(), 0, 'Hello World')).toBe('Hello World');
+  });
 });

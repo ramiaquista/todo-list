@@ -5,6 +5,6 @@ const getLocalStorage = () => {
     return [];
   }
   return data;
-}
+};
 
 module.exports = getLocalStorage;
